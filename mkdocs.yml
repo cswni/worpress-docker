@@ -1,8 +1,8 @@
 site_name: "Docker y WordPress"
 site_author: "Sergio Gómez <sergio@uco.es>"
 site_description: "Taller de introducción a docker"
-repo_name: "aulasoftwarelibre/taller-de-docker"
-repo_url: "https://github.com/aulasoftwarelibre/taller-de-docker.git"
+repo_name: "cswni/worpress-docker"
+repo_url: "https://github.com/cswni/worpress-docker.git"
 
 copyright: Copyleft - CC BY-NC 4.0 - Aula de Software Libre
 

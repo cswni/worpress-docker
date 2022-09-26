@@ -1,4 +1,4 @@
-# Taller de Docker
+Docker y Worpress
 
 <div align="center">
 
@@ -9,4 +9,4 @@
 Este taller forma parte de las actividades del [Aula de Software Libre de la
 Universidad de Córdoba](https://www.uco.es/aulasoftwarelibre).
 
-La documentación está accesible en: [https://aulasoftwarelibre.github.io/taller-de-docker/](https://aulasoftwarelibre.github.io/taller-de-docker/).
+La documentación está accesible en: [https://https://cswni.github.io/worpress-docker/](https://cswni.github.io/worpress-docker/).
