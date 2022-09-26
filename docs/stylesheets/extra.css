@@ -1,0 +1,29 @@
+img[alt$=">"] {
+  float: right;
+}
+
+img[alt$="<"] {
+  float: left;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  float: none !important;
+}
+
+:root {
+  --md-primary-fg-color: #033126;
+  --md-primary-fg-color--light: rgb(123, 136, 204);
+  --md-primary-fg-color--dark: #e0d5d5;
+}
+
+* {
+  --md-typeset-a-color: rgb(123, 136, 204);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 150;
+}
