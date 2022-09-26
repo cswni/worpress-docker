@@ -53,7 +53,7 @@ Contenedor (container)
 Servicios (services)
 : Los servicios permiten escalar contenedor a través de múltiples demonios de Docker, los cuales trabajarán conjuntamente como un enjambre (swarm).
 
-## Objetivos del taller
+## Objetivos del taller de Docker y Wordpress
 
 En este taller aprenderemos:
 
@@ -64,4 +64,4 @@ En este taller aprenderemos:
 En este taller no aprenderemos:
 
 * A crear un cluster con Docker (Docker Swarm).
-* A administrar sistemas. Se darán ya las instrucciones necesarias para crear servicios pero explicarlos está más alla del ámbito de este taller. Se recomienda cursar la asignatura: "Programación y Administración de Sistemas" del Grado de Ingeniería Informática.
+* A administrar sistemas. Se darán ya las instrucciones necesarias para crear servicios pero explicarlos está más alla del ámbito de este taller.
