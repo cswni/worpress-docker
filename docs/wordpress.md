@@ -7,48 +7,11 @@ Para crear un _blog_ con _WordPress_ necesitamos tener una base de datos dónde 
 _WordPress_ soporta los motores relaciones _MySQL_ y _MariaDB_. Usaremos este último.
 
 !!! info "Crear el contenedor de MariaDB"
-    Vamos a crear nuestra base de datos usando este volumen.
+    CREAR LA CARPETA wordpressdb en la raiz de C
     
-        docker run -d --name wordpress-db \
-            --mount type=bind,source=C:/wordpressdb,target=/var/lib/mysql \
-            -e MYSQL_ROOT_PASSWORD=secret \
-            -e MYSQL_DATABASE=wordpress \
-            -e MYSQL_USER=manager \
-            -e MYSQL_PASSWORD=secret mariadb:10.3.9
+        docker run -d --name wordpress-db --mount type=bind,source=C:/wordpressdb,target=/var/lib/mysql -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=wordpress -e MYSQL_USER=manager -e MYSQL_PASSWORD=secret mariadb
 
-La imagen se descargará, si no lo estaba ya, y se iniciará nuestro contenedor de _MariaDB_:
-
-    :::console hl_lines="1 2 3 4 5 6"
-    $ docker run -d --name wordpress-db \
-        --mount source=wordpress-db,target=/var/lib/mysql \
-        -e MYSQL_ROOT_PASSWORD=secret \
-        -e MYSQL_DATABASE=wordpress \
-        -e MYSQL_USER=manager \
-        -e MYSQL_PASSWORD=secret mariadb:10.3.9
-    Unable to find image 'mariadb:10.3.9' locally
-    10.3.9: Pulling from library/mariadb
-    124c757242f8: Pull complete 
-    9d866f8bde2a: Pull complete 
-    fa3f2f277e67: Pull complete 
-    398d32b153e8: Pull complete 
-    afde35469481: Pull complete 
-    31f2ae82b3e3: Pull complete 
-    3eeaf7e45ea6: Pull complete 
-    716982328e17: Pull complete 
-    34ce605c9036: Pull complete 
-    4502ed9073c0: Pull complete 
-    2afafbdf5a96: Pull complete 
-    43d52b11dd31: Pull complete 
-    30c7b70556f3: Pull complete 
-    8b1b39f2f89a: Pull complete 
-    41480b9319d7: Pull complete 
-    Digest: sha256:b7894bd08e5752acdd41fea654cb89467c99e67b8293975bb5d787b27e66ce1a
-    Status: Downloaded newer image for mariadb:10.3.9
-    30634831d17108aa553a5774e27f398760bdbdf32debc3179843e73aa5957956
-    
-    $ docker ps
-    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
-    30634831d171        mariadb:10.3.9      "docker-entrypoint.s…"   20 seconds ago      Up 16 seconds       3306/tcp            wordpress-db
+La imagen se descargará, si no lo estaba ya, y se iniciará nuestro contenedor de _MariaDB
 
 El principal cambio en `docker run` con respecto a la última vez es que no hemos usado
 `-p` (el parámetro para publicar puertos) y hemos añadido el parámetro `-d`.
