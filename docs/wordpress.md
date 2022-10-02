@@ -6,11 +6,11 @@ Para crear un _blog_ con _WordPress_ necesitamos tener una base de datos dónde 
 
 _WordPress_ soporta los motores relaciones _MySQL_ y _MariaDB_. Usaremos este último.
 
-!!! example
+!!! info "Crear el contenedor de MariaDB"
     Vamos a crear nuestra base de datos usando este volumen.
     
         docker run -d --name wordpress-db \
-            --mount source=wordpress-db,target=/var/lib/mysql \
+            --mount type=bind,source=C:/wordpressdb,target=/var/lib/mysql \
             -e MYSQL_ROOT_PASSWORD=secret \
             -e MYSQL_DATABASE=wordpress \
             -e MYSQL_USER=manager \
@@ -74,34 +74,51 @@ Por último, el parámetro `--mount` nos permite enlazar el volumen que creamos 
 
     Nosotros somos muy obedientes así que en este taller usaremos `--mount`.
 
-## Creando nuestro blog
+## Creando nuestro proyecto con WordPress
 
 Vamos a crear otra vez nuestro contenedor de _WordPress_, pero esta vez vamos a conectarlo con nuestra base de datos. Además, queremos poder editar los ficheros de las plantillas, por si tenemos que modificar algo, así que necesitaremos montar el directorio del contenedor donde está instalado _WordPress_ con nuestra cuenta de usuario en la máquina anfitrión.
 
-!!! example
-    Vamos a crear el espacio de trabajo:
+!!! info "Crear la carpeta en C"
+    Vamos a crear una carpeta en la raiz de C:
 
-        mkdir -p ~/Sites/wordpress/target && cd ~/Sites/wordpress
+        Usar el explorador de windows y crearla con el nombre 
+        
+        wordpress
 
-!!! example
+!!! info "Crear el contenedor de Wordpress"
     Y dentro de este directorio arrancamos el contenedor:
 
-        docker run -d --name wordpress \
-            --link wordpress-db:mysql \
-            --mount type=bind,source="$(pwd)"/target,target=/var/www/html \
-            -e WORDPRESS_DB_USER=manager \
-            -e WORDPRESS_DB_PASSWORD=secret \
-            -p 8080:80 \
-            wordpress:4.9.8
+        docker run -d --name wordpress 
+            --link wordpress-db:mysql 
+            --mount type=bind,source=C:/wordpress,target=/var/www/html 
+            -e WORDPRESS_DB_USER=manager 
+            -e WORDPRESS_DB_PASSWORD=secret 
+            -p 8080:80 
+            wordpress
 
-Cuando termine la ejecución, si accedemos a la dirección [http://localhost:8080/](http://localhost:8080/), ahora sí podremos acabar el proceso de instalación de nuestro WordPress. Si listamos el directorio target comprobaremos que tenemos todos los archivos de instalación accesibles desde el directorio anfitrión.
+ > Este proceso descarga unos 200 mb aprox
 
-!!! note
-    Ejercicios:
+Cuando termine la ejecución, si accedemos a la dirección [http://localhost:8080/](http://localhost:8080/), ahora sí podremos acabar el proceso de instalación de nuestro WordPress. Podemos revisar el directorio c:/wordpress y ahi veremos el listado de todos los archivos de worpress.
 
-    1. Para los contenedores, tanto el de _WordPress_ como el _MariaDB_.
-    2. Borra ambos.
-    3. Vuelve a crearlos y mira como ya no es necesario volver a instalar _WordPress_.
-    4. Vuelve a borrarlos y borra también el volumen.
-    5. Vuelve a crear el volumen y los contenedores y comprueba que ahora sí hay que volver a instalar _WordPress_.
+!!! error "IMPORTANTE"
+    IMPORTANTE:
 
+    1. Despues de la descarga de la imagen de Worpress cuando accedemos a la dirección [http://localhost:8080/](http://localhost:8080/) puede que no les cargue de forma inmediata. Deben esperar que se inicien los servicios que requiere Worpress para trabajar.
+
+
+## Instalacion de Wordpress
+
+ * Elegir el idioma: Español 
+ * Titulo del sitio: Mi Sitio Web (Pueden cambiar al que deseen)
+ * Nombre de usuario: admin
+ * Contraseña: Worpress genera una pero la pueden cambiar. Anotenla
+ * Correo electronico. Usen el educativo
+ * Visibilidad de los motores de busqueda. Activado
+ * Instalar WordPress
+ * Lo lograstes. Clic en Acceder y usaan el usuario
+
+
+!!! info "INFO"
+    Detalles:
+
+    1. Acceder a la ruta [http://localhost:8080/](http://localhost:8080/) para revisar el sitio web.
